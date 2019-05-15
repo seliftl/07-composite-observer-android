@@ -11,6 +11,7 @@ import de.thro.inf.prg3.a07.api.OpenMensaAPI;
 import de.thro.inf.prg3.a07.model.Meal;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -47,12 +48,10 @@ public class OpenMensaAPITests {
 
     @Test
     public void testGetMeals() throws IOException {
-        // TODO prepare call
-
-        // TODO execute the call synchronously
-
-        // TODO unwrap the body
-        List<Meal> meals = null;
+        // prepare call
+		Call<List<Meal>> call = openMensaAPI.getMeals("2019-05-15");
+        // execute the call synchronously
+		List<Meal> meals = call.execute().body();
 
         assertNotNull(meals);
         assertNotEquals(0, meals.size());
